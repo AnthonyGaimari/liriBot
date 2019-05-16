@@ -79,27 +79,3 @@ function spotifyThisSong(term) {
 
     });
 } 
-	//Do What it Says 
-    function doWhatItSays() {
-        fs.readFile("random.txt", "utf8", function (error, data) {
-            if (error) {
-                console.log(error);
-            }
-            else {
-                var randomDataArray = data.split(',');
-                var command = randomDataArray[0];
-                var term = randomDataArray[1];
-                switch (command) {
-                    case "spotify-this-song":
-                        spotifyThisSong(term);
-                        break;
-                    case "movie-this":
-                        movieThis(term);
-                        break;
-                }
-            }
-        });
-    
-    } 
-
-// TestGit push
