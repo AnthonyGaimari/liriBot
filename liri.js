@@ -56,10 +56,10 @@ function spotifyThisSong(term) {
             return console.log('Error occurred: ' + err);
         }
         // Show the following on the console and log file:
-        // * Artist(s)
-        // * The song's name
-        // * A preview link of the song from Spotify
-        // * The album that the song is from
+        // Artist(s)
+        // The song's name
+        // A preview link of the song from Spotify
+        // The album that the song is from
         var firstResult = data.tracks.items[0];
         var trackInfo = "* Track Title: " + firstResult.name +
             "* Artist(s): " + firstResult.album.artists[0].name +
