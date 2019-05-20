@@ -12,7 +12,7 @@ switch (command) {
         #();
         break;
     case "spotify-this-song":
-        songRequest(input);
+        song();
         break;
     case "movie-this":
         #();
@@ -27,3 +27,5 @@ switch (command) {
 function songRequest (songTitle) {
 console.log(songTitle);
 }
+
+//test env.

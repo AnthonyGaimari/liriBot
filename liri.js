@@ -9,20 +9,22 @@ var https = require('https');
 
 var command = process.argv[2];
 var term = process.argv.slice(3);
-var defaultSong = 'The Sign'
-var defaultBand = 'Mr. Nobody'
+
+var defaultSong = 'The Sign';
+var defaultBand = 'Mr. Nobody';
+
 
 switch (command) {
 
-    case "spotify":
+    case "spotify-this-song":
         spotifyThisSong(term);
         break;
 
-    case "movie":
+    case "movie-this":
         movieThis(term);
         break;
 
-    case "concert":
+    case "concert-this":
         concertThis(term);
         break;
 
@@ -38,7 +40,7 @@ switch (command) {
 
 //Spotify 
 function spotifyThisSong(term) {
-    // get or assemble the song name and store it in a variable called "song"
+    // get the song name and store it in a variable called "song"
     var song;
 
     if (term != undefined) {
@@ -110,8 +112,9 @@ function movieThis(term) {
         movieName = term;
     }
     // Then run a request to the OMDB API with the movie specified
-    var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&plot=short&apikey=40e9cece";
+    var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&plot=short&apikey=trilogy";
     // Then create a request to the queryUrl
+    console.log(queryUrl);
     request(queryUrl, function (error, response, body) {
         // If the request is successful
         if (!error && response.statusCode === 200) {
@@ -128,7 +131,7 @@ function movieThis(term) {
             var movieInfo = "* Movie Title: " + movieData.Title +
                 "* The movie's Release Year is: " + movieData.Year +
                 "* The movie's IMDB Rating is: " + movieData.Ratings[0].Value +
-                "* The movie's Rotten Tomatoes Rating is: " + movieData.Ratings[1].Value +
+                "* The movie's Rotten Tomatoes Rating is: " + movieData.Ratings[0].Value +
                 "* The movie was produced in: " + movieData.Country +
                 "* The movie's Language is: " + movieData.Language +
                 "* The movie's Plot is: " + movieData.Plot +
@@ -164,7 +167,21 @@ function concertThis(term) {
     var queryUrl = 'https://rest.bandsintown.com/artists/' + term + '/events?app_id=codingbootcamp'
 
     axios.get(queryUrl).then(function (response) {
-        console.log(response);
+        // console.log(response.data);
+
+        for(var i = 0 ; i < response.data.length; i++) {
+
+            console.log("==============================================");
+
+            console.log("Name: " + response.data[i].venue.name);
+            console.log("Location: " + response.data[i].venue.city + ", " + response.data[i].venue.region);
+            console.log("Date: " + response.data[i].datetime);
+
+
+            
+            console.log("==============================================");
+
+        }
 
     })
 };
